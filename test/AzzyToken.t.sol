@@ -14,18 +14,13 @@ contract AzzyTokenTest is Test {
     uint256 constant INITIAL_SUPPLY = 1_000_000;
 
     function setUp() public {
-        token = new AzzyToken(
-            "AzzyToken",
-            "AZK",
-            INITIAL_SUPPLY
-        );
+        token = new AzzyToken("AzzyToken", "AZK", INITIAL_SUPPLY);
     }
 
     /* DEPLOYMENT */
 
     function testInitialSupplyMintedToOwner() public {
-        uint256 expectedSupply =
-            INITIAL_SUPPLY * 10 ** token.decimals();
+        uint256 expectedSupply = INITIAL_SUPPLY * 10 ** token.decimals();
 
         assertEq(token.totalSupply(), expectedSupply);
         assertEq(token.balanceOf(owner), expectedSupply);
@@ -39,10 +34,7 @@ contract AzzyTokenTest is Test {
         token.transfer(elizer, amount);
 
         assertEq(token.balanceOf(elizer), amount);
-        assertEq(
-            token.balanceOf(owner),
-            token.totalSupply() - amount
-        );
+        assertEq(token.balanceOf(owner), token.totalSupply() - amount);
     }
 
     /* MINTING */
@@ -89,9 +81,6 @@ contract AzzyTokenTest is Test {
 
         token.burn(burnAmount);
 
-        assertEq(
-            token.totalSupply(),
-            supplyBefore - burnAmount
-        );
+        assertEq(token.totalSupply(), supplyBefore - burnAmount);
     }
 }

@@ -7,11 +7,7 @@ import "../src/AzzyToken.sol";
 contract DeployAzzyToken is Script {
     function run() external {
         vm.startBroadcast();
-        new AzzyToken(
-            "Azzy Token",
-            "AZK",
-            1_000_000
-        );
+        new AzzyToken("Azzy Token", "AZK", 1_000_000);
         vm.stopBroadcast();
     }
 }
